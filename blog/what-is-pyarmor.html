@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is PyArmor? Obfuscation & Decryption Explained | KCRACKER</title>
+  <meta name="description" content="An in-depth technical analysis of PyArmor's Python code obfuscation mechanisms, runtime architecture, licensing modules, and structural deobfuscation pathways.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Blog</a> &gt; <span>What is PyArmor?</span>
+      </div>
+      <h1>What is PyArmor Obfuscation & How Does Decryption Work?</h1>
+      <div class="article-meta">
+        <span>Published: May 26, 2026</span>
+        <span>•</span>
+        <span>Author: KCRACKER Research Team</span>
+        <span>•</span>
+        <span>Category: Code Obfuscation</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        Python, by design, is an interpreted language that compiles source files into plain, readable bytecode (<code>.pyc</code> files). Standard decompilers like <code>decompyle3</code> or <code>uncompyle6</code> can quickly restore these bytecode structures back to exact human-readable source code. For software vendors looking to protect their intellectual property, this ease of reverse engineering poses a significant hurdle.
+      </p>
+      <p>
+        This is where <strong>PyArmor</strong> comes in. PyArmor is one of the most widely adopted and robust commercial obfuscation tools specifically designed for Python scripts and applications. In this article, we’ll explore how PyArmor protects Python code and how professionals analyze and decrypt these applications.
+      </p>
+
+      <h2>How PyArmor Works</h2>
+      <p>
+        Unlike simple obfuscators that merely rename variables or replace strings with gibberish, PyArmor operates directly on the Python runtime structures. It uses a multi-layered security model that changes substantially between legacy versions (PyArmor 7) and modern enterprise releases (PyArmor 8 and 9).
+      </p>
+      
+      <h3>1. Bytecode Encryption</h3>
+      <p>
+        PyArmor does not leave standard bytecode exposed inside a compiled binary. Instead, it encrypts the code object of every single function. When a module is loaded, PyArmor uses AES-256 encryption keys generated dynamically per-build to protect the underlying bytecode payload.
+      </p>
+
+      <h3>2. Dynamic Runtime Decryption</h3>
+      <p>
+        The core of PyArmor is its dynamic runtime system. Instead of decrypting the entire file to disk or memory at startup, it performs <strong>just-in-time runtime decryption</strong>. As the Python virtual machine enters a code object block, PyArmor intercepts the evaluation loop, decrypts the specific bytecode payload into RAM, allows the VM to execute it, and immediately obfuscates or clears it from memory once the execution frame exits.
+      </p>
+
+      <h3>3. The Bootstrap Extension Module</h3>
+      <p>
+        PyArmor injects a compiled binary extension module (such as <code>_pyarmor.so</code> or <code>_pyarmor.pyd</code>) into the package structure. This dynamic link library acts as the bootstrap loader, handles the licensing checks, intercepts standard Python interpreter hooks, and implements anti-debugging and anti-decompilation features to prevent memory dumping.
+      </p>
+
+      <h2>The Challenge of Decrypting PyArmor</h2>
+      <p>
+        Because PyArmor decrypts bytecode frames only when they are executing, standard static unpackers cannot simply parse the target file. A specialized reverse engineering workflow is required:
+      </p>
+      
+      <pre><code># Conceptual visualization of runtime frame capture
+import sys
+import ctypes
+
+def trace_calls(frame, event, arg):
+    if event == 'call':
+        co = frame.f_code
+        # Accessing raw bytecode memory buffers immediately 
+        # after PyArmor performs dynamic runtime decryption
+        raw_code = ctypes.string_at(co.co_code, len(co.co_code))
+        reconstruct_bytecode(co.co_name, raw_code)
+    return trace_calls</code></pre>
+
+      <h2>Our Decryption Methodology</h2>
+      <p>
+        At KCRACKER, we bypass static binary protections by utilizing advanced dynamic analysis. By instrumenting the Python virtual machine runtime directly, we capture the decrypted bytecode objects at the exact millisecond they are evaluated.
+      </p>
+      <ul>
+        <li><strong>Hooking Runtime Evaluation Loops:</strong> We hook the internal <code>PyEval_EvalFrameDefault</code> function inside the Python DLL to gain full visibility into active frame stacks.</li>
+        <li><strong>Memory Dumping Bypass:</strong> We disable PyArmor’s anti-debugging protections (such as timing checks and system debugger APIs) to run protected apps inside custom analysis sandboxes safely.</li>
+        <li><strong>Source Reconstruction:</strong> Once raw bytecode maps are successfully dumped, we reconstruct standard <code>.pyc</code> file headers, restore variable names and constant values, and output beautifully formatted Python source code matching your original structure.</li>
+      </ul>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>Need PyArmor Decrypted?</h3>
+        <p>Our automated bypass sandbox and dynamic instrumentation pipelines extract bytecode frames and restore pristine source files in 24–48 hours.</p>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Request Decryption</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Related Articles</h3>
+        <ul class="sidebar-links">
+          <li><a href="how-nuitka-works.html">How Nuitka Compiles Python Code</a></li>
+          <li><a href="python-reverse-engineering-basics.html">Python Reverse Engineering Basics</a></li>
+          <li><a href="packed-python-executables-explained.html">Packed Python Executables Decoded</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="../kb/supported-protections.html">Supported Protections</a></li>
+            <li><a href="../kb/faq.html">Detailed FAQ</a></li>
+            <li><a href="../kb/delivery-process.html">Delivery Process</a></li>
+            <li><a href="../kb/security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="../kb/security-policy.html">Privacy Policy</a>
+          <a href="../kb/delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

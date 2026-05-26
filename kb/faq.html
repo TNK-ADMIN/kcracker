@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions | KCRACKER KB</title>
+  <meta name="description" content="In-depth answers to frequently asked questions about our reverse engineering, file recovery, legalities, delivery files, and payment methods.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Knowledge Base</a> &gt; <span>Detailed FAQ</span>
+      </div>
+      <h1>Frequently Asked Questions</h1>
+      <div class="article-meta">
+        <span>Last Updated: May 2026</span>
+        <span>•</span>
+        <span>Author: Support Team</span>
+        <span>•</span>
+        <span>Category: FAQ & Guidelines</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main KB Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        Welcome to the KCRACKER Knowledge Base. Below are detailed answers to the most common inquiries regarding our Python reverse engineering pipelines, output deliverables, security standards, and business policies.
+      </p>
+
+      <h2>1. Services & Feasibility</h2>
+      
+      <h3>What specific files will I receive upon project completion?</h3>
+      <p>
+        When we complete a recovery project, we deliver a structured ZIP archive containing:
+      </p>
+      <ul>
+        <li><strong>Original Source Files:</strong> Clean, deobfuscated Python source code (<code>.py</code>) reconstructed with original formatting, imports, and variable scopes.</li>
+        <li><strong>Directory Tree:</strong> The complete folder structure of the application, maintaining the original layout of submodules and asset folders.</li>
+        <li><strong>Recovered Assets:</strong> Embedded images, text files, JSON configurations, SQL database mockups, and binary assets.</li>
+        <li><strong>Analysis Summary:</strong> A comprehensive markdown report detailing the protection systems bypass method, structural overview, and compilation dependencies.</li>
+      </ul>
+
+      <h3>What happens if you are unable to decrypt my file?</h3>
+      <p>
+        We perform a **free initial feasibility review** before accepting any project or payment. If we determine that a binary contains JIT virtualization blocks or advanced protections that cannot be fully reconstructed within your timeframe, we will notify you immediately. If we accept a project and encounter unexpected technical roadblocks, you are protected by our **No Deobfuscation, No Fee guarantee**—no payment is required.
+      </p>
+
+      <h2>2. Legalities & Ethics</h2>
+
+      <h3>Is it legal to reverse engineer or decrypt Python applications?</h3>
+      <p>
+        Reverse engineering is a widely recognized, dual-use technical discipline protected under several standard legal exceptions, including:
+      </p>
+      <ul>
+        <li><strong>Security Audits:</strong> Conducting essential security audits, checking for embedded malware or vulnerability configurations.</li>
+        <li><strong>Interoperability:</strong> Reconstructing interface parameters and data structures to achieve functional interoperability with external systems.</li>
+        <li><strong>Source Code Recovery:</strong> Recovering lost or corrupted source code for legacy applications when the original author or agency no longer maintains active backups.</li>
+      </ul>
+      <p>
+        Clients are solely responsible for ensuring they possess the appropriate usage rights for submitted binaries under their local jurisdictions. We do not accept projects involving active malware creation, copyright infringement, or malicious distribution.
+      </p>
+
+      <h2>3. Security & Confidentially</h2>
+
+      <h3>How do you guarantee the confidentiality of my files?</h3>
+      <p>
+        Security is our highest priority. All files submitted for analysis are:
+      </p>
+      <ul>
+        <li>Loaded inside **offline, sandboxed virtual environments** completely isolated from external networks.</li>
+        <li>Accessible strictly by the designated reverse engineering analyst.</li>
+        <li>Subject to rigorous NDA covenants—your files, variables, and business logic are never shared, discussed, or published.</li>
+        <li><strong>Permanently Purged:</strong> All analysis sandboxes, dumped bytecode frames, and extracted files are securely deleted from our physical drives 7 days after delivery completion.</li>
+      </ul>
+
+      <h2>4. Payments & Delivery</h2>
+
+      <h3>What payment methods do you accept?</h3>
+      <p>
+        To ensure privacy and rapid global processing, we accept major cryptocurrencies including:
+      </p>
+      <ul>
+        <li><strong>USDT</strong> (Tether - TRC20 and ERC20 networks)</li>
+        <li><strong>BTC</strong> (Bitcoin)</li>
+        <li><strong>LTC</strong> (Litecoin - recommended for low network fees)</li>
+        <li><strong>TRX</strong> (TRON)</li>
+      </ul>
+      <p>
+        Payment is strictly processed **after** we provide verified proof of successful extraction (such as standard video demonstrations, screenshot directory mappings, or small functional source snippets).
+      </p>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>Have a Specific Question?</h3>
+        <p>If you have any other technical or business inquiries, feel free to speak with our support representatives directly on Telegram.</p>
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Contact on Telegram</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Knowledge Base</h3>
+        <ul class="sidebar-links">
+          <li><a href="supported-protections.html">Supported Protections</a></li>
+          <li><a href="delivery-process.html">Delivery Process</a></li>
+          <li><a href="security-policy.html">Security Policy</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="supported-protections.html">Supported Protections</a></li>
+            <li><a href="faq.html">Detailed FAQ</a></li>
+            <li><a href="delivery-process.html">Delivery Process</a></li>
+            <li><a href="security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="../blog/what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="../blog/how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="../blog/python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="../blog/packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="security-policy.html">Privacy Policy</a>
+          <a href="delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

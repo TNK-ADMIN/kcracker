@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Reverse Engineering Basics & Decompilers | KCRACKER</title>
+  <meta name="description" content="An entry-level guide to Python reverse engineering. Learn about Python bytecodes, opcode tables, decompiler tools like pycdc and uncompyle6, and script restoration.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Blog</a> &gt; <span>Reverse Engineering Basics</span>
+      </div>
+      <h1>Python Reverse Engineering Basics: Bytecode & Decompilation</h1>
+      <div class="article-meta">
+        <span>Published: May 26, 2026</span>
+        <span>•</span>
+        <span>Author: KCRACKER Research Team</span>
+        <span>•</span>
+        <span>Category: Reverse Engineering</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        Python is often viewed as a simple scripting language, but its compilation model is surprisingly elegant. When you run a script, the interpreter converts the source code into bytecode, which is executed by the Python Virtual Machine (PVM). Understanding how this bytecode works is the key to reverse engineering protected Python applications.
+      </p>
+      <p>
+        In this introductory guide, we’ll explore the foundation of Python reverse engineering, standard decompilation tools, and how obfuscated packages are analyzed by security experts.
+      </p>
+
+      <h2>The Structure of Python Bytecode</h2>
+      <p>
+        Python bytecode consists of instruction opcodes and parameters stored inside compiled <code>.pyc</code> files. A <code>.pyc</code> file contains:
+      </p>
+      <ol>
+        <li><strong>A Magic Number:</strong> 4 bytes representing the specific Python version compiler version.</li>
+        <li><strong>Modification Time & Size:</strong> Metadata indicating when the script was compiled.</li>
+        <li><strong>The Marshal Object:</strong> The serialized Code Object containing variable tables, constant arrays, and the raw bytecode instruction stream.</li>
+      </ol>
+      
+      <p>
+        We can dissect a Python function's internal bytecode instructions using the built-in <code>dis</code> module:
+      </p>
+
+      <pre><code># Python disassembly demonstration
+import dis
+
+def verify_serial(key):
+    if key == "KCRACKER-SECURE-KEY":
+        return True
+    return False
+
+dis.dis(verify_serial)</code></pre>
+
+      <p>
+        The disassembly output shows the virtual machine stack operations:
+      </p>
+      <pre><code>  2           0 LOAD_FAST                0 (key)
+              2 LOAD_CONST               1 ('KCRACKER-SECURE-KEY')
+              4 COMPARE_OP               2 (==)
+              6 POP_JUMP_IF_FALSE       12
+
+  3           8 LOAD_CONST               2 (True)
+             10 RETURN_VALUE
+
+  4     >>   12 LOAD_CONST               3 (False)
+             14 RETURN_VALUE</code></pre>
+
+      <h2>Standard Decompilation Toolchains</h2>
+      <p>
+        To automate code recovery from standard <code>.pyc</code> files, reverse engineers use automated decompilers. These parse the compiled code objects and reconstruct original AST structures:
+      </p>
+      <ul>
+        <li><strong>Uncompyle6:</strong> Supports Python versions 1.0 through 3.8. It operates by performing semantic analysis on opcode structures and outputting clean syntax patterns.</li>
+        <li><strong>Decompyle3:</strong> A specialized branch of uncompyle6 focused on modern Python 3.7 and 3.8 syntax optimization.</li>
+        <li><strong>PyCDC (Python C++ Decompiler):</strong> A fast, C++ based decompiler supporting modern bytecode engines up to Python 3.10 and 3.11. Extremely efficient but can stumble on heavily obfuscated control structures.</li>
+      </ul>
+
+      <h2>Analyzing Obfuscated Modules</h2>
+      <p>
+        When standard decompilers run into obfuscated scripts, they crash or return incomplete chunks. Standard protections implement several bypass barriers:
+      </p>
+      <ul>
+        <li><strong>Opcode Scrambling:</strong> Custom interpreters (like some variations of PyArmor) modify standard Python opcode values. For example, <code>LOAD_CONST</code> might be swapped from 100 to 142. Standard decompilers parse this incorrectly and fail.</li>
+        <li><strong>Control Flow Flattening:</strong> Obfuscators insert fake conditional jumps, nested loops, or dead branches to make decompiler tools loop infinitely or crash.</li>
+        <li><strong>Bytecode Stripping:</strong> Functions are cleared from RAM immediately after they execute, making dynamic memory dumping difficult.</li>
+      </ul>
+      <p>
+        Solving these challenges requires resolving custom opcode mappings, tracing virtual instruction pointers in debuggers, and cleaning control-flow graphs manually or with custom solver scripts.
+      </p>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>Stuck on a Binary?</h3>
+        <p>If your decompiler returns errors, crashes on custom opcodes, or outputs flattened blocks, let KCRACKER's analysts recover your code cleanly.</p>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Contact Expert</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Related Articles</h3>
+        <ul class="sidebar-links">
+          <li><a href="what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+          <li><a href="how-nuitka-works.html">How Nuitka Compiles Python Code</a></li>
+          <li><a href="packed-python-executables-explained.html">Packed Python Executables Decoded</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="../kb/supported-protections.html">Supported Protections</a></li>
+            <li><a href="../kb/faq.html">Detailed FAQ</a></li>
+            <li><a href="../kb/delivery-process.html">Delivery Process</a></li>
+            <li><a href="../kb/security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="../kb/security-policy.html">Privacy Policy</a>
+          <a href="../kb/delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

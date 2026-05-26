@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packed Python Executables Explained: Unpacking PyInstaller | KCRACKER</title>
+  <meta name="description" content="Learn how Python scripts are compiled and bundled inside packed executable wrappers like PyInstaller, and how to extract the original source code files.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Blog</a> &gt; <span>Packed Executables Explained</span>
+      </div>
+      <h1>Packed Python Executables: Extracting Source from PyInstaller</h1>
+      <div class="article-meta">
+        <span>Published: May 26, 2026</span>
+        <span>•</span>
+        <span>Author: KCRACKER Research Team</span>
+        <span>•</span>
+        <span>Category: Binary Unpacking</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Article Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        Distributing Python applications is notoriously difficult because end users must have the Python interpreter installed along with all required library dependencies. To solve this, developers use packaging frameworks like <strong>PyInstaller</strong>, <strong>py2exe</strong>, or <strong>cx_Freeze</strong> to compile everything into a single, convenient executable (<code>.exe</code>) file.
+      </p>
+      <p>
+        However, there is a common misconception that these tools encrypt or secure your code. In reality, packed executables are merely self-extracting archive wrappers. In this article, we’ll dive into the anatomy of a packed PyInstaller executable and show how to extract the original source code.
+      </p>
+
+      <h2>Anatomy of a PyInstaller Executable</h2>
+      <p>
+        When PyInstaller processes a Python project, it creates a structured bundle containing:
+      </p>
+      <ul>
+        <li><strong>A Compiled Bootloader:</strong> A native system executable compiled in C that manages application startup.</li>
+        <li><strong>Dependency Libraries:</strong> Dynamic link libraries (like <code>python39.dll</code> and C extension modules) required by your program.</li>
+        <li><strong>A PYZ Archive:</strong> A compressed zip file containing all your project's custom Python module files.</li>
+        <li><strong>Compiled Entry Script:</strong> The main Python script compiled into bytecode and embedded outside the zip structure.</li>
+      </ul>
+
+      <h2>The PyInstaller Startup Process</h2>
+      <p>
+        When an end user clicks the <code>.exe</code>:
+      </p>
+      <ol>
+        <li>The compiled bootloader starts.</li>
+        <li>It creates a temporary directory in the system temp directory (usually named <code>_MEIxxxxxx</code>).</li>
+        <li>It decompresses all embedded dependencies and library modules from its overlay space into this directory.</li>
+        <li>It initializes the Python runtime inside the temporary folder.</li>
+        <li>It reads and executes the compiled main script from the internal archive, loading packages from the local directory dynamically.</li>
+      </ol>
+
+      <h2>How to Extract PyInstaller Binaries</h2>
+      <p>
+        Because all file content is stored directly within the executable, unpacking is straightforward using target utilities.
+      </p>
+      
+      <h3>1. Extracting the Archive with pyinstxtractor</h3>
+      <p>
+        A standard Python reverse engineering tool is <code>pyinstxtractor.py</code> (PyInstaller Extractor). By scanning the binary layout, it detects the overlay structures, extracts the main bootloader components, parses the `.pyz` compressed index, and dumps the raw <code>.pyc</code> compiled bytecode files to disk.
+      </p>
+
+      <pre><code># Commands to extract a packed executable
+python pyinstxtractor.py target_application.exe</code></pre>
+
+      <h3>2. Restoring the Missing Magic Numbers</h3>
+      <p>
+        When PyInstaller packages your code, it strips the standard header from the compiled files to save space, specifically the <strong>magic compilation bytes</strong>. Standard decompilers like <code>uncompyle6</code> or <code>pycdc</code> cannot parse these stripped files immediately.
+      </p>
+      <p>
+        To fix this, we must open the extracted main file and one of the standard library files (which preserves its header) in a hex editor:
+      </p>
+      <ul>
+        <li>Copy the first 12 to 16 bytes of header data from a valid library file.</li>
+        <li>Open the stripped main file and prepend these copied header bytes to the beginning of the file.</li>
+        <li>Save the modified file as <code>main_restored.pyc</code>.</li>
+      </ul>
+
+      <pre><code># Conceptual hex representation of magic byte restoration
+Standard Bytecode File Header (.pyc):
+Magic Number (4 bytes) | Timestamp (4 bytes) | Size (4 bytes) | Marshal Blob...
+[63 0D 0D 0A]            [00 00 00 00]        [A3 04 00 00]    [E3 01...]
+
+Stripped PyInstaller Bytecode File (.pyc):
+Marshal Blob... (Stripped header)
+[E3 01...]  &lt;-- Decompiler fails here until we prepend [63 0D 0D 0A 00 00 00 00 A3 04 00 00]</code></pre>
+
+      <h3>3. Decompiling to Python Source</h3>
+      <p>
+        With the headers restored, standard decompiler tools can now parse the files cleanly, rebuilding clean Python code structures.
+      </p>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>PyInstaller Extraction</h3>
+        <p>Do you have a packed PyInstaller executable that needs immediate extraction, source recovery, or library rebuild? We offer fast extraction services starting at $5.</p>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Request Extraction</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Related Articles</h3>
+        <ul class="sidebar-links">
+          <li><a href="what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+          <li><a href="how-nuitka-works.html">How Nuitka Compiles Python Code</a></li>
+          <li><a href="python-reverse-engineering-basics.html">Python Reverse Engineering Basics</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="../kb/supported-protections.html">Supported Protections</a></li>
+            <li><a href="../kb/faq.html">Detailed FAQ</a></li>
+            <li><a href="../kb/delivery-process.html">Delivery Process</a></li>
+            <li><a href="../kb/security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="../kb/security-policy.html">Privacy Policy</a>
+          <a href="../kb/delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

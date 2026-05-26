@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supported Python Protections & Platforms | KCRACKER KB</title>
+  <meta name="description" content="A comprehensive catalog of supported Python protections, including PyArmor 7/8/9, Nuitka standalone builds, PyInstaller, and custom compilers.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Knowledge Base</a> &gt; <span>Supported Protections</span>
+      </div>
+      <h1>Supported Protections & Specifications</h1>
+      <div class="article-meta">
+        <span>Last Updated: May 2026</span>
+        <span>•</span>
+        <span>Author: Support Team</span>
+        <span>•</span>
+        <span>Category: Supported Tech</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main KB Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        KCRACKER provides professional reverse engineering, analysis, and source code recovery services for a wide range of protected Python configurations. Below is our complete, up-to-date technical catalog of supported protection versions, compilers, and executable wrappers.
+      </p>
+
+      <h2>1. PyArmor Protected Applications</h2>
+      <p>
+        PyArmor is a powerful tool used to obfuscate Python scripts, bind them to specific license keys, and protect them from simple decompilation. We support all main release branches:
+      </p>
+      <ul>
+        <li><strong>PyArmor 7 (Legacy):</strong> 
+          <ul>
+            <li>Full support for standard obfuscation, advanced mode, and **Super Mode** builds.</li>
+            <li>Restoration of dynamic license locks, execution time expiration limits, and hard drive MAC bindings.</li>
+            <li>Complete reconstruction of function frames, variable names, and constants.</li>
+          </ul>
+        </li>
+        <li><strong>PyArmor 8 & 9 (Modern Enterprise):</strong> 
+          <ul>
+            <li>Support for **Basic**, **Pro**, and **Enterprise** licenses.</li>
+            <li>Dynamic decryption extraction for **JIT (Just-In-Time) evaluation** modules.</li>
+            <li>Bypass of dynamic anti-debugging checks, memory hooks, and integrity validation layers.</li>
+            <li>Reconstruction of custom virtual machine instructions and bytecode blocks.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>2. Nuitka Compiled Binaries</h2>
+      <p>
+        Nuitka converts Python scripts into native C++ code to run as compiled machine binaries. We provide comprehensive static and dynamic disassembly:
+      </p>
+      <ul>
+        <li><strong>Compilation Modes:</strong> Support for standalone builds, onefile wrappers, and native shared libraries (<code>.so</code> / <code>.pyd</code>).</li>
+        <li><strong>Commercial Extensions:</strong> Extraction of encrypted constant tables, strings, and system variables embedded inside enterprise-grade Nuitka builds.</li>
+        <li><strong>Metadata Recovery:</strong> Recovery of underlying library directory hierarchies, structural call tables, and module names.</li>
+      </ul>
+
+      <h2>3. Python Packed Executables</h2>
+      <p>
+        Executable bundle packaging frameworks wrap runtime files inside native system loaders. We offer full recovery for:
+      </p>
+      <ul>
+        <li><strong>PyInstaller (All Versions):</strong> Extracting PYZ indexes, repairing stripped bytecode headers, and resolving standard module paths.</li>
+        <li><strong>py2exe & cx_Freeze:</strong> Extracting zipped resource overlays, parsing executable directories, and recovering original Python files.</li>
+        <li><strong>Modern Custom Packers:</strong> Analysis of custom C-based bootloaders that unpack Python files at startup.</li>
+      </ul>
+
+      <h2>4. Other Python Compilers and Wrappers</h2>
+      <p>
+        We also support less common environments and custom compilation targets:
+      </p>
+      <ul>
+        <li><strong>Cython Compiled Extensions:</strong> Reverse engineering of Cython generated <code>.pyd</code>/<code>.so</code> libraries. While direct decompilation to Python is not possible, we recover functional logic, variables, and API calls.</li>
+        <li><strong>PyConcrete:</strong> Unwrapping encrypted <code>.pye</code> files by intercepting runtime import hooks and memory buffers.</li>
+        <li><strong>Zip Safe & Encrypted Runtimes:</strong> Bypassing custom decryption logic injected inside standard Python bootstrap loaders.</li>
+      </ul>
+
+      <h2>Platform and System Architectures</h2>
+      <p>
+        Our analysis and extraction sandboxes support binaries compiled for all major operating systems and processor architectures:
+      </p>
+      <ul>
+        <li><strong>Windows:</strong> <code>.exe</code>, <code>.dll</code>, <code>.pyd</code> (x86 and x64 builds).</li>
+        <li><strong>Linux:</strong> ELF binaries, <code>.so</code> shared libraries (x86_64, ARM32, and AArch64).</li>
+        <li><strong>macOS:</strong> Mach-O executables, compiled frameworks, and app bundles (Intel and Apple Silicon M1/M2/M3 platforms).</li>
+      </ul>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>Have a Protected File?</h3>
+        <p>Send us your protected file to get a free initial analysis. We will identify the protection type and provide a custom quote.</p>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Get Free Analysis</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Knowledge Base</h3>
+        <ul class="sidebar-links">
+          <li><a href="faq.html">Detailed FAQ</a></li>
+          <li><a href="delivery-process.html">Delivery Process</a></li>
+          <li><a href="security-policy.html">Security Policy</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="supported-protections.html">Supported Protections</a></li>
+            <li><a href="faq.html">Detailed FAQ</a></li>
+            <li><a href="delivery-process.html">Delivery Process</a></li>
+            <li><a href="security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="../blog/what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="../blog/how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="../blog/python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="../blog/packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="security-policy.html">Privacy Policy</a>
+          <a href="delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

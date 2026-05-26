@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Policy & Confidentiality | KCRACKER KB</title>
+  <meta name="description" content="Read our formal security policy regarding file handling, isolated sandbox environments, air-gapped analyses, data confidentiality, and secure purging.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="../index.html" class="logo" id="nav-logo-link">
+        <img src="../logo.jpg" alt="KCRACKER Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo-icon').style.display='flex';">
+        <span class="logo-icon" id="fallback-logo-icon" style="display:none;">K</span>
+        <span>KCRACKER</span>
+      </a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="../index.html" class="nav-link">Home</a></li>
+        <li><a href="../index.html#services" class="nav-link">Services</a></li>
+        <li><a href="../index.html#features" class="nav-link">Features</a></li>
+        <li><a href="../index.html#workflow" class="nav-link">Workflow</a></li>
+        <li><a href="../index.html#faq" class="nav-link">FAQ</a></li>
+        <li><a href="https://t.me/tnk_k07vn" class="nav-link">Contact</a></li>
+        
+        <li class="nav-actions-mobile">
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-telegram btn-sm">Telegram</a>
+          <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm">Request Service</a>
+        </li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" id="btn-nav-telegram">Telegram</a>
+        <a href="https://t.me/tnk_k07vn" class="btn btn-primary btn-sm" id="btn-nav-request">Request Service</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle navigation menu" id="mobile-toggle-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Subpage Hero -->
+  <header class="subpage-hero">
+    <div class="container">
+      <div class="breadcrumbs">
+        <a href="../index.html">Home</a> &gt; <a href="../index.html#faq">Knowledge Base</a> &gt; <span>Security Policy</span>
+      </div>
+      <h1>Security Policy & File Isolation Protocols</h1>
+      <div class="article-meta">
+        <span>Last Updated: May 2026</span>
+        <span>•</span>
+        <span>Author: Chief Security Officer</span>
+        <span>•</span>
+        <span>Category: Privacy & Safety</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main KB Content -->
+  <main class="container article-container">
+    <article class="article-content">
+      <p>
+        In the field of reverse engineering and security auditing, trust and data protection are paramount. Many Python binaries submitted to us contain highly sensitive trade secrets, custom business logics, or proprietary API architectures. 
+      </p>
+      <p>
+        To guarantee the absolute confidentiality of your intellectual property, KCRACKER operates under a strict, comprehensive Security and Isolation Policy. This document details our operational protocols, virtual machine architectures, and data sanitization standards.
+      </p>
+
+      <h2>1. File Isolation & Dynamic Sandboxing</h2>
+      <p>
+        We do not analyze client files on network-connected primary production systems. All incoming executables are immediately quarantined:
+      </p>
+      <ul>
+        <li><strong>Air-Gapped Virtual Machines:</strong> Analysis is conducted exclusively inside local virtualized guest OS environments (VMware ESXi and VirtualBox sandboxes) running strictly offline with all network interface cards (NICs) disabled.</li>
+        <li><strong>Firewall Protections:</strong> In rare cases where a binary requires network access to execute its dynamic decryption routines, it is routed through an isolated local proxy server that intercepts all traffic and blocks outbound calls to public IP spaces.</li>
+        <li><strong>Zero Host Exposure:</strong> Client files never run directly on host machines, ensuring complete isolation from our internal systems and networks.</li>
+      </ul>
+
+      <h2>2. Operational Data Handling</h2>
+      <ul>
+        <li><strong>Restricted Access:</strong> Only the designated senior reverse engineering analyst assigned to your ticket is permitted to view, execute, or process your files.</li>
+        <li><strong>Confidentiality Covenants:</strong> Every KCRACKER employee and contract specialist operates under legally binding non-disclosure agreements (NDAs) that apply indefinitely to all client files, variable tables, database schema, and source algorithms.</li>
+        <li><strong>No Cloud Uploads:</strong> We never leverage public AI systems or public scanning repositories (such as VirusTotal) to analyze your files. All reverse engineering, disassembly, and decompilation are performed using offline, localized databases and tools.</li>
+      </ul>
+
+      <h2>3. Post-Project Sanitization Schedule</h2>
+      <p>
+        We do not store your intellectual property long-term. We follow a strict post-delivery cleanup timeline:
+      </p>
+      <ul>
+        <li><strong>Active Archive Phase (Days 1–7):</strong> We retain your submitted files and recovered source code on our local sandboxes for exactly 7 days after delivery. This allows us to provide complimentary support in case you need assistance with compilation flags or notice missing module references.</li>
+        <li><strong>Permanent Sanitization (Day 8):</strong> On the 8th day post-handoff, our systems trigger an automated shredding utility. This utility:
+          <ul>
+            <li>Performs multi-pass secure overwriting (standard DoD 5220.22-M sanitation protocol) on all local file blocks.</li>
+            <li>Destroys the associated isolated virtual machine sandbox instance.</li>
+            <li>Purges all memory logs and deobfuscation outputs.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>4. Policy Compliance Audits</h2>
+      <p>
+        Our offline servers undergo weekly manual security audits to verify that no residual data from past orders remains inside temp directories, paging space, or memory dumps. We are committed to maintaining a clean, secure environment for every project.
+      </p>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="article-sidebar">
+      <div class="sidebar-widget sidebar-cta">
+        <h3>Secure Handovers</h3>
+        <p>Your privacy is fully protected. All project communications are encrypted end-to-end, and all files are handled strictly offline.</p>
+        <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="margin-top: 1rem; width: 100%;">Discuss Securely</a>
+      </div>
+
+      <div class="sidebar-widget">
+        <h3>Knowledge Base</h3>
+        <ul class="sidebar-links">
+          <li><a href="supported-protections.html">Supported Protections</a></li>
+          <li><a href="faq.html">Detailed FAQ</a></li>
+          <li><a href="delivery-process.html">Delivery Process</a></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>KCRACKER</h3>
+          <p>Professional reverse engineering and Python decryption services focused on protected Python applications, packed executables, and advanced binary analysis.</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#services">Services</a></li>
+            <li><a href="../index.html#features">Features</a></li>
+            <li><a href="../index.html#workflow">Workflow</a></li>
+            <li><a href="../index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Knowledge Base</h4>
+          <ul class="footer-links">
+            <li><a href="supported-protections.html">Supported Protections</a></li>
+            <li><a href="faq.html">Detailed FAQ</a></li>
+            <li><a href="delivery-process.html">Delivery Process</a></li>
+            <li><a href="security-policy.html">Security Policy</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-nav">
+          <h4>Latest Articles</h4>
+          <ul class="footer-links">
+            <li><a href="../blog/what-is-pyarmor.html">What is PyArmor Obfuscation?</a></li>
+            <li><a href="../blog/how-nuitka-works.html">How Nuitka Compiles Code</a></li>
+            <li><a href="../blog/python-reverse-engineering-basics.html">Reverse Engineering Basics</a></li>
+            <li><a href="../blog/packed-python-executables-explained.html">Packed Executables Decoded</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 KCRACKER — Reverse Engineering Services. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="security-policy.html">Privacy Policy</a>
+          <a href="delivery-process.html">Terms of Service</a>
+          <a href="https://t.me/tnk_k07vn" target="_blank" rel="noopener noreferrer">Telegram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
