@@ -1,0 +1,12 @@
+# Robots.txt for kcracker.asia
+# Optimized for Googlebot, Bingbot, and general search crawlers
+
+User-agent: *
+Allow: /
+
+# Exclude any temporary or admin files if created later
+Disallow: /scratch/
+Disallow: /temp/
+
+# Link to sitemap
+Sitemap: https://kcracker.asia/sitemap.xml
