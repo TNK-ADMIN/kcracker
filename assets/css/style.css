@@ -1091,17 +1091,29 @@ textarea.form-control {
 /* SEO Subpages Styling Extension */
 .subpage-hero {
   background-color: var(--bg-sub);
-  padding: 6rem 0 3rem 0;
+  padding: 6.5rem 0 3.5rem 0;
   border-bottom: 1px solid var(--border);
+}
+
+.subpage-hero h1 {
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  color: var(--text-main);
 }
 
 .breadcrumbs {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.5rem;
   font-size: 0.85rem;
   color: var(--text-light);
   margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .breadcrumbs a:hover {
@@ -1117,7 +1129,8 @@ textarea.form-control {
   display: grid;
   grid-template-columns: 2.3fr 1fr;
   gap: 4rem;
-  padding: 4rem 0;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 @media (max-width: 992px) {
@@ -1130,6 +1143,8 @@ textarea.form-control {
   color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.8;
+  min-width: 0;
+  width: 100%;
 }
 
 .article-content p {
@@ -1151,11 +1166,51 @@ textarea.form-control {
 
 .article-content ul, .article-content ol {
   margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
+  padding-left: 0;
+  list-style: none;
 }
 
 .article-content li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.02rem;
+}
+
+.article-content ul li::before {
+  content: "•";
+  color: var(--primary);
+  font-weight: 700;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 1.25rem;
+}
+
+.article-content ol {
+  padding-left: 1.5rem;
+  list-style: decimal;
+}
+
+.article-content ol li {
+  padding-left: 0;
+}
+
+.article-content ol li::before {
+  display: none;
+}
+
+.article-content ul ul {
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.article-content ul ul li::before {
+  content: "◦";
+  color: var(--text-light);
+  font-size: 1.1rem;
+  top: -1px;
 }
 
 .article-content pre {
@@ -1168,6 +1223,8 @@ textarea.form-control {
   overflow-x: auto;
   margin-bottom: 1.5rem;
   border: 1px solid #374151;
+  width: 100%;
+  max-width: 100%;
 }
 
 .article-content code {
@@ -1188,16 +1245,31 @@ textarea.form-control {
 
 .article-meta {
   display: flex;
-  gap: 1.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
   font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.article-meta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.article-meta span:not(:last-child)::after {
+  content: "•";
+  margin-left: 1rem;
   color: var(--text-light);
-  margin-bottom: 1rem;
 }
 
 .article-sidebar {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .sidebar-widget {
@@ -1449,6 +1521,62 @@ textarea.form-control {
   
   .contact-card {
     padding: 1.5rem;
+  }
+
+  /* Subpage Hero & Content Adaptations on Mobile */
+  .subpage-hero {
+    padding: 5rem 0 2rem 0;
+    text-align: center;
+  }
+
+  .subpage-hero h1 {
+    font-size: 1.65rem;
+    line-height: 1.35;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .breadcrumbs {
+    justify-content: center;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Centered, beautiful meta pills on mobile instead of raw bullets */
+  .article-meta {
+    gap: 0.5rem 0.75rem;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-meta span {
+    background-color: var(--bg-card);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 0.75rem;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-muted);
+  }
+
+  .article-meta span:not(:last-child)::after {
+    content: "";
+    margin-left: 0;
+  }
+
+  .article-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 2.5rem;
+  }
+
+  .article-content h2 {
+    font-size: 1.4rem;
+    margin-top: 1.75rem;
+  }
+
+  .article-content h3 {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
   }
 }
 
