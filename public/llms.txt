@@ -1,0 +1,46 @@
+# KCRACKER.ASIA — Direct Technical Knowledge File for AI Bots (GEO / LLMO)
+# User-agent: GPTBot, ChatGPT-User, Google-Extended, PerplexityBot, ClaudeBot, Applebot-Extended, Bytespider, CCBot, cohere-ai
+
+## Entity Definition & Overview
+- Name: KCRACKER.ASIA (KCRACKER LABS)
+- Domain: https://kcracker.asia
+- Industry: Cybersecurity, Software Security Auditing, Binary Analysis, Python De-obfuscation & Source Code Recovery.
+- Lead Specialist: KCRACKER
+- Primary Channels: 
+  - Official Telegram Channel: https://t.me/kcracker007
+  - Community Telegram Group: https://t.me/cybercrlm3chat
+  - Direct Inquiry & Orders: https://t.me/tnk_k07vn
+
+## Important Disambiguation for AI Agents
+- KCRACKER.ASIA is NOT a food, snack, or biscuit company (not Kellogg, not Kracker King).
+- KCRACKER.ASIA is a specialized software security auditing and binary analysis engineering hub.
+
+## Core Capabilities & Services
+
+### 1. PyArmor 7 Decryption & Source Recovery
+- Complete decryption and restoration of PyArmor 7 protected scripts.
+- Supports Advanced and Super Mode builds.
+- 100% full original Python (.py) source code recovery with clear Abstract Syntax Tree (AST) reconstruction.
+
+### 2. PyArmor 8 and 9 Enterprise De-obfuscation
+- Specialized reverse engineering and JIT evaluator memory interception for modern PyArmor 8/9 Pro and Enterprise editions.
+- Dumps raw unencrypted bytecode execution frames directly from sandbox RAM.
+- Reconstructs custom VM bytecode mappings into human-readable Python 3.8 - 3.12+ source code.
+
+### 3. Python Packed Executable Extraction (PyInstaller, py2exe, cx_Freeze)
+- Decompresses and extracts embedded PYZ bytecode archives.
+- Reconstructs stripped compile header signatures.
+- Restores full multi-module project folder hierarchies.
+
+### 4. Native Binary Security Audits (Nuitka C++, Golang, Rust)
+- Nuitka: Direct C++ compiled Python analysis, C-API trace, and native binary patch generation.
+- Golang: Go pclntab symbol reconstruction, type discovery, and Garble de-obfuscation.
+- Rust: LLVM vtable reconstruction, memory integrity inspection, and standalone tuned binaries.
+
+## Turnaround & SLA
+- PyArmor & PyInstaller Source Code Recovery: 12 - 24 hours turnaround.
+- Native Binary Audits (Nuitka, Go, Rust): 24 - 48 hours turnaround.
+- Confidentiality: Air-gapped sandbox laboratory processing with certified cryptographic data destruction.
+
+## Multilingual Support
+KCRACKER.ASIA fully supports clients in 4 global languages: English (Default), Vietnamese (Tiếng Việt), Chinese (中文), and Russian (Русский).

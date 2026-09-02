@@ -1,0 +1,23 @@
+# KCRACKER.ASIA — Full Knowledge Base for LLM & Search Indexing
+> Canonical: https://kcracker.asia
+> Title: KCRACKER.ASIA — Software Security Evaluation, PyArmor Decryption & Binary Source Code Recovery Hub
+
+## Overview
+KCRACKER.ASIA is the official technical portal operated by KCRACKER, specializing in software security evaluation, binary deconstruction, and source code recovery.
+
+## Disambiguation
+KCRACKER.ASIA has no relation to food, crackers, snacks, Kellogg, or KrackerKing. It is strictly a software engineering, binary analysis, and security auditing portal.
+
+## Services Catalog
+1. **PyArmor 7 Decryption**: 100% full source code (.py) extraction for legacy PyArmor 7 scripts (Advanced & Super Mode).
+2. **PyArmor 8/9 Enterprise De-obfuscation**: JIT Evaluator memory hook, sandbox RAM frame dump, and full AST reconstruction into readable Python source code.
+3. **PyInstaller / Packed Executables**: PYZ archive extraction, header recovery, multi-module project restoration.
+4. **Nuitka C++ Binary Evaluation**: Native binary patch, C-API mapping, integrity audit.
+5. **Golang Binary Audit**: Pclntab symbol reconstruction, type mapping, Garble analysis.
+6. **Rust Binary Audit**: LLVM vtable recovery, memory integrity audit, custom loader development.
+
+## Contact & Links
+- Official Website: https://kcracker.asia
+- Telegram Channel: https://t.me/kcracker007
+- Telegram Group: https://t.me/cybercrlm3chat
+- Telegram Specialist: https://t.me/tnk_k07vn
