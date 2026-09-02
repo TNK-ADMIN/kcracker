@@ -128,6 +128,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     alternateLocale: ["vi_VN", "zh_CN", "ru_RU"],
     type: "website",
+    images: [
+      {
+        url: "https://kcracker.asia/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "KCRACKER.ASIA Software Security Evaluation & Source Code Recovery Banner",
+      },
+    ],
   },
 
   twitter: {
@@ -136,6 +144,7 @@ export const metadata: Metadata = {
     description:
       "Deep-tech security audit, PyArmor 7/8/9 source recovery, PyInstaller extraction, and native binary analysis.",
     creator: "@kcracker007",
+    images: ["https://kcracker.asia/og-image.jpg"],
   },
 
   robots: {
@@ -182,6 +191,7 @@ export default function RootLayout({
         "name": "KCRACKER.ASIA",
         "url": "https://kcracker.asia",
         "logo": "https://kcracker.asia/favicon.ico",
+        "image": "https://kcracker.asia/og-image.jpg",
         "knowsAbout": [
           "Software Security Audit",
           "Reverse Engineering",
