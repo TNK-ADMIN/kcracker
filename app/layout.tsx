@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "KCRACKER.ASIA - Tier-1 Software Security Evaluation, PyArmor 7/8/9 Decryption, PyInstaller Archive Unpacking, and Native Binary Analysis for Nuitka C++, Golang, and Rust.",
   
-  // Multilingual SEO Keywords for Global Search Engines (Google, Yandex, Baidu, Bing)
+  // Multilingual SEO Keywords for Global Search Engines & AI Bots
   keywords: [
     // English keywords
     "KCRACKER",
@@ -182,6 +182,17 @@ export default function RootLayout({
         "name": "KCRACKER.ASIA",
         "url": "https://kcracker.asia",
         "logo": "https://kcracker.asia/favicon.ico",
+        "knowsAbout": [
+          "Software Security Audit",
+          "Reverse Engineering",
+          "PyArmor Decryption",
+          "Python Source Code Recovery",
+          "PyInstaller Unpacking",
+          "Nuitka Binary Analysis",
+          "Golang Reverse Engineering",
+          "Rust Binary Evaluation"
+        ],
+        "disambiguatingDescription": "KCRACKER.ASIA is a software security and reverse engineering service portal. It is NOT related to food, crackers, snacks, Kellogg, or KrackerKing.",
         "sameAs": [
           "https://t.me/kcracker007",
           "https://t.me/cybercrlm3chat",
@@ -283,6 +294,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
+        <link rel="author" href="https://kcracker.asia/llms.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
