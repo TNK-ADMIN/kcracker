@@ -63,6 +63,5 @@ export default function robots(): MetadataRoute.Robots {
       }
     ],
     sitemap: "https://kcracker.asia/sitemap.xml",
-    host: "https://kcracker.asia",
   };
 }
