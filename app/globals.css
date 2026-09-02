@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+:root {
+  --bg-obsidian: #050608;
+  --panel-bg: rgba(13, 17, 23, 0.75);
+  --cyan-glow: #00f5d4;
+  --amber-glow: #ffb703;
+}
+
+/* Hide Next.js Dev Indicator Badge completely */
+#__next-build-watcher,
+[data-nextjs-dev-indicator],
+[data-nextjs-toast],
+nextjs-portal,
+#nextjs-dev-indicator {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body {
+  background-color: #050608;
+  color: #e5e7eb;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 245, 212, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(121, 40, 202, 0.10) 0%, transparent 40%),
+    radial-gradient(circle at 15% 70%, rgba(255, 183, 3, 0.08) 0%, transparent 40%),
+    linear-gradient(to right, rgba(0, 245, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 245, 212, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+::selection {
+  background: #00f5d4;
+  color: #050608;
+}
+
+/* CRT and Scanlines */
+.crt-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* Neon Glow Utilities */
+.neon-border-cyan {
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  box-shadow: 0 0 25px rgba(0, 245, 212, 0.12), inset 0 0 15px rgba(0, 245, 212, 0.04);
+}
+
+.neon-border-amber {
+  border: 1px solid rgba(255, 183, 3, 0.3);
+  box-shadow: 0 0 25px rgba(255, 183, 3, 0.12), inset 0 0 15px rgba(255, 183, 3, 0.04);
+}
+
+.neon-border-green {
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.12), inset 0 0 15px rgba(16, 185, 129, 0.04);
+}
+
+.neon-glow-text {
+  text-shadow: 0 0 18px rgba(0, 245, 212, 0.6), 0 0 35px rgba(0, 245, 212, 0.3);
+}
+
+.amber-glow-text {
+  text-shadow: 0 0 18px rgba(255, 183, 3, 0.6);
+}
+
+.glass-card {
+  background: rgba(13, 17, 23, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(31, 41, 55, 0.8);
+}
+
+.glass-card:hover {
+  border-color: rgba(0, 245, 212, 0.4);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 245, 212, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050608;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f5d4;
+}
+
+/* Floating animation */
+@keyframes cyber-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: cyber-float 5s ease-in-out infinite;
+}
+
+/* Pulse animation */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.9; }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Radar Sweep */
+@keyframes radar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-radar {
+  animation: radar-spin 6s linear infinite;
+  transform-origin: center center;
+}
